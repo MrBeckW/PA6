@@ -130,10 +130,12 @@
     <ClCompile Include="BST.cpp" />
     <ClCompile Include="BSTNode.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MorseTranslator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BST.hpp" />
     <ClInclude Include="BSTNode.hpp" />
+    <ClInclude Include="MorseTranslator.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="MorseTable.txt" />

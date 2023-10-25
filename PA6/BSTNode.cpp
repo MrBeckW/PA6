@@ -19,7 +19,7 @@ char BSTNode::getChar() const
 	return mEnglishChar;
 }
 
-string BSTNode::getMorseStr() const
+string BSTNode::getMorseStr() const 
 {
 	return mMorseStr;
 }

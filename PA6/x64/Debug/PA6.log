@@ -1,0 +1,3 @@
+﻿  BST.cpp
+C:\Users\beckr\Documents\School Work\CS 122\ProgrammingAssaignments\PA6\PA6\BST.cpp(37): warning C4715: 'BST::locateChar': not all control paths return a value
+  PA6.vcxproj -> C:\Users\beckr\Documents\School Work\CS 122\ProgrammingAssaignments\PA6\PA6\x64\Debug\PA6.exe

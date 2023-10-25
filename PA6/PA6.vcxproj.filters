@@ -24,12 +24,18 @@
     <ClCompile Include="BSTNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MorseTranslator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BST.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BSTNode.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MorseTranslator.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

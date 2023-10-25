@@ -10,7 +10,7 @@ BST::BST()
 {
 	mRoot = nullptr;
 	mMorseTranslation = "";
-	mInput.open("MorseTable.txt");
+	
 
 }
 
@@ -19,7 +19,7 @@ BST::BST()
 /// </summary>
 BST::~BST()
 {
-	mInput.close();
+	destroyTree(this->mRoot);
 }
 
 void BST::insertNode(const char& newChar, const string& newMorseStr)
@@ -27,9 +27,13 @@ void BST::insertNode(const char& newChar, const string& newMorseStr)
 	insertNode(newChar, newMorseStr, mRoot);
 }
 
-void BST::locateCharPreOrder(char character)
+string BST::locateChar(const char character)
 {
-	locateCharPreOrder(mRoot, character);
+	if (locateChar(mRoot, character))
+	{
+		return mMorseTranslation;
+	}
+	
 }
 
 string BST::getMorseTranslation() const
@@ -79,19 +83,43 @@ void BST::insertNode(const char& newChar, const string& newMorseStr, BSTNode* pT
 
 }
 
-void BST::locateCharPreOrder(BSTNode* pTree, char character) //p, l, r
+bool BST::locateChar(BSTNode* pTree, char character) //p, l, r
+{
+	bool success = true;
+	if (pTree != nullptr)
+	{
+		if (pTree->getChar() < character)//traverse right
+		{
+			locateChar(pTree->getpRight(), character);
+		}
+		else if (pTree->getChar() > character)//traverse left
+		{
+			locateChar(pTree->getpLeft(), character);
+		}
+		else if(pTree->getChar() == character)
+		{
+			mMorseTranslation = pTree->getMorseStr();
+		}
+		else
+		{
+			cout << "Character not found\n";
+			success = false;
+		}
+	}
+	else
+	{
+		cout << "Tree does not exist\n";
+		success = false;
+	}
+	return success;
+}
+
+void BST::destroyTree(BSTNode* pTree)
 {
 	if (pTree != nullptr)
 	{
-		if (pTree->getChar() == character)
-		{
-			this->mMorseTranslation = pTree->getMorseStr();
-		}
-		else 
-		{
-			locateCharPreOrder(pTree->getpLeft(), character);
-			locateCharPreOrder(pTree->getpRight(), character);
-		}
-		
+		destroyTree(pTree->getpLeft());
+		destroyTree(pTree->getpRight());
+		delete pTree;
 	}
 }
