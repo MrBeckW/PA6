@@ -14,8 +14,8 @@ public:
 
 	void insertNode(const char &newChar, const string& newMorseStr);
 	string locateChar(const char character);
-
 	string getMorseTranslation() const;
+	void printTree()const;
 
 private:
 	BSTNode* mRoot;
@@ -24,5 +24,6 @@ private:
 	void insertNode(const char& newChar, const string& newMorseStr, BSTNode* pTree);
 	bool locateChar(BSTNode* pTree, char character);
 	void destroyTree(BSTNode* pTree);
+	void printTree(BSTNode* pTree)const;
 
 };

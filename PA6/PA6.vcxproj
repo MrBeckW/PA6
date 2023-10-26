@@ -138,6 +138,7 @@
     <ClInclude Include="MorseTranslator.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Convert.txt" />
     <Text Include="MorseTable.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

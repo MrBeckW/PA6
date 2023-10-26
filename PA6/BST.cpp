@@ -10,8 +10,6 @@ BST::BST()
 {
 	mRoot = nullptr;
 	mMorseTranslation = "";
-	
-
 }
 
 /// <summary>
@@ -22,29 +20,56 @@ BST::~BST()
 	destroyTree(this->mRoot);
 }
 
+/// <summary>
+/// public version of insertNode, calls the private version
+/// </summary>
+/// <param name="newChar">a character</param>
+/// <param name="newMorseStr">morse code translation of character</param>
 void BST::insertNode(const char& newChar, const string& newMorseStr)
 {
 	insertNode(newChar, newMorseStr, mRoot);
 }
 
+/// <summary>
+/// public version of locateChar
+/// </summary>
+/// <param name="character">character to be located</param>
+/// <returns>translated character</returns>
 string BST::locateChar(const char character)
 {
 	if (locateChar(mRoot, character))
 	{
 		return mMorseTranslation;
 	}
-	
 }
 
+/// <summary>
+/// getter for mMoreseTranslation
+/// </summary>
+/// <returns></returns>
 string BST::getMorseTranslation() const
 {
 	return mMorseTranslation;
+}
+
+/// <summary>
+/// public version of printTree, calls private version.
+/// </summary>
+void BST::printTree() const
+{
+	printTree(mRoot);
 }
 
 
 ///////////
 //Private member-functions
 
+/// <summary>
+/// private version of insertNode. 
+/// </summary>
+/// <param name="newChar">a character</param>
+/// <param name="newMorseStr">morse code translation of character</param>
+/// <param name="pTree">pointer to a BSTNode</param>
 void BST::insertNode(const char& newChar, const string& newMorseStr, BSTNode* pTree)
 {
 	if (pTree == nullptr)
@@ -83,6 +108,12 @@ void BST::insertNode(const char& newChar, const string& newMorseStr, BSTNode* pT
 
 }
 
+/// <summary>
+/// private version of locateChar
+/// </summary>
+/// <param name="pTree">pointer to a BSTNode</param>
+/// <param name="character">the character to be located</param>
+/// <returns>true if character is found</returns>
 bool BST::locateChar(BSTNode* pTree, char character) //p, l, r
 {
 	bool success = true;
@@ -96,7 +127,7 @@ bool BST::locateChar(BSTNode* pTree, char character) //p, l, r
 		{
 			locateChar(pTree->getpLeft(), character);
 		}
-		else if(pTree->getChar() == character)
+		else if(pTree->getChar() == character)//character found updates mMorseTranslation with the corriponding translation
 		{
 			mMorseTranslation = pTree->getMorseStr();
 		}
@@ -114,6 +145,10 @@ bool BST::locateChar(BSTNode* pTree, char character) //p, l, r
 	return success;
 }
 
+/// <summary>
+/// deallocates all the nodes in the tree using postorderTraversal
+/// </summary>
+/// <param name="pTree"></param>
 void BST::destroyTree(BSTNode* pTree)
 {
 	if (pTree != nullptr)
@@ -121,5 +156,32 @@ void BST::destroyTree(BSTNode* pTree)
 		destroyTree(pTree->getpLeft());
 		destroyTree(pTree->getpRight());
 		delete pTree;
+	}
+}
+
+/// <summary>
+/// prints out the tree with directional arrows to show the structure of the tree in an easily readable way.
+/// </summary>
+/// <param name="pTree"></param>
+void BST::printTree(BSTNode* pTree) const
+{
+	//preorder traversal
+	if (pTree != nullptr)
+	{
+		cout << pTree->getChar();
+		if (pTree->getpLeft() != nullptr)
+		{
+			cout << " < ";
+			
+		}
+		printTree(pTree->getpLeft());
+		if (pTree->getpRight() != nullptr)
+		{
+			cout << " > ";
+			
+		}
+		printTree(pTree->getpRight());
+		cout << " ^";
+		
 	}
 }
